@@ -1,0 +1,167 @@
+0000000             		org 20
+0000014             
+0000014 1b 00 00 0a 
+0000018             		beq	there
+0000018 1a 00 00 1a 
+000001c             		bne	there
+000001c 19 00 00 2a 
+0000020             		bcs	there
+0000020 18 00 00 3a 
+0000024             		bcc	there
+0000024 17 00 00 4a 
+0000028             		bmi	there
+0000028 16 00 00 5a 
+000002c             		bpl	there
+000002c 15 00 00 6a 
+0000030             		bvs	there
+0000030 14 00 00 7a 
+0000034             		bvc	there
+0000034 13 00 00 8a 
+0000038             		bhi	there
+0000038 12 00 00 9a 
+000003c             		bls	there
+000003c 11 00 00 aa 
+0000040             		bge	there
+0000040 10 00 00 ba 
+0000044             		blt	there
+0000044 0f 00 00 ca 
+0000048             		bgt	there
+0000048 0e 00 00 da 
+000004c             		ble	there
+000004c 0d 00 00 ea 
+0000050             		bal	there
+0000050 0c 00 00 fa 
+0000054             		bnv	there
+0000054 0b 00 00 ea 
+0000058             		b	there
+0000058 fe ff ff ea 
+000005c             here:		bal	here
+000005c 00 00 51 e5 
+0000060             		cmp	r1,#0
+0000060 08 00 00 0a 
+0000064             		beq	there
+0000064             
+0000064 fd ff ff eb 
+0000068             		bl	here+8
+0000068 01 10 92 e4 
+000006c             		adds	r1,r2,#1
+000006c              *** constante invalida : 777 <<< ***
+000006c 00 10 92 e4 
+0000070             		adds	r1,r2,#777
+0000070 10 14 92 e4 
+0000074             		adds	r1,r2,#4096
+0000074              *** constante invalida : 4097 <<< ***
+0000074 00 10 92 e4 
+0000078             		adds	r1,r2,#4097
+0000078 f0 16 92 e4 
+000007c             		adds	r1,r2,#0f0000h
+000007c 1c 1e 92 e4 
+0000080             		adds	r1,r2,#0c0000001h
+0000080 00 00 00 3b 
+0000084             		blcc	there
+0000084             
+0000084 ff ff ff fb 
+0000088             		blnv	there
+0000088             
+0000088 05 20 84 00 
+000008c             there:		addeq	r2,r4,r5
+000008c 03 00 34 e5 
+0000090             		teqs	r4,#3
+0000090             
+0000090 37 42 45 e0 
+0000094             		sub	r4,r5,r7,lsr r2
+0000094 17 42 45 e0 
+0000098             		sub	r4,r5,r7,asl r2
+0000098 17 42 45 e0 
+000009c             		sub	r4,r5,r7,lsl r2
+000009c 77 42 45 e0 
+00000a0             		sub	r4,r5,r7,ror r2
+00000a0 57 42 45 e0 
+00000a4             		sub	r4,r5,r7,asr r2
+00000a4 67 40 45 e0 
+00000a8             		sub	r4,r5,r7,rrx
+00000a8 a7 44 45 e0 
+00000ac             		sub	r4,r5,r7,lsr #9
+00000ac             
+00000ac              *** operando invalido : rrx #9 <<< tipo de deslocamento desconhecido ***
+00000ac 07 40 45 e0 
+00000b0             		sub	r4,r5,r7,rrx #9
+00000b0              *** operando invalido : lsr #9 <<< falta uma "," ***
+00000b0 07 40 45 e0 
+00000b4             		sub	r4,r5,r7 lsr #9
+00000b4              *** operando invalido : rsr #9 <<< tipo de deslocamento desconhecido ***
+00000b4 07 40 45 e0 
+00000b8             		sub	r4,r5,r7,rsr #9
+00000b8              *** operando invalido : 45 <<< constante maior que 32 ***
+00000b8 27 40 45 e0 
+00000bc             		sub	r4,r5,r7,lsr #45
+00000bc             
+00000bc 00 f0 3f e5 
+00000c0             		teqp	r15,#0
+00000c0             
+00000c0 00 00 a0 f1 
+00000c4             		movnv	r0,r0
+00000c4              *** operando invalido : 14<<< ***
+00000c4 00 f0 a0 e1 
+00000c8             		mov	r15,14
+00000c8             
+00000c8 0e f0 b0 e1 
+00000cc             		movs	r15,r14
+00000cc             
+00000cc 92 03 01 e0 
+00000d0             		mul	r1,r2,r3
+00000d0 92 43 31 00 
+00000d4             		mlaeqs	r1,r2,r3,r4
+00000d4             
+00000d4 03 10 a2 e7 
+00000d8             		str	r1,[r2,r3]!
+00000d8 03 10 82 e6 
+00000dc             		str	r1,[r2],r3
+00000dc 03 10 c2 e6 
+00000e0             		strb	r1,[r2],r3
+00000e0 03 10 a2 e5 
+00000e4             		str	r1,[r2,#3]!
+00000e4 03 10 82 e4 
+00000e8             		str	r1,[r2],#3
+00000e8 03 10 02 e5 
+00000ec             		str	r1,[r2,#-3]
+00000ec 03 10 22 e4 
+00000f0             		strt	r1,[r2],#-3
+00000f0              *** erro : a opcao "T" nao pode ser usada com pre'indexacao ***
+00000f0 03 10 82 e7 
+00000f4             		strt	r1,[r2,r3]
+00000f4              *** operando invalido : ! <<< falta uma "," ***
+00000f4 03 10 82 e6 
+00000f8             		str	r1,[r2],r3!
+00000f8             
+00000f8 10 10 92 e5 
+00000fc             		ldr	r1,[r2,#16]
+00000fc 03 11 92 e7 
+0000100             		ldr	r1,[r2,r3,lsl #2]
+0000100             
+0000100              *** Rn - registrador invalido: base,#5]<<< ***
+0000100 00 10 d0 04 
+0000104             		ldreqb	r1,[base,#5]
+0000104 04 10 8f e5 
+0000108             		str	r1,place
+0000108             place:
+0000108 07 00 b7 e8 
+000010c             		ldmfd	r7!,{r0,r1,r2}
+000010c ff ff 82 e8 
+0000110             		stmia	r2,{r0-r15}
+0000110             
+0000110 0f 40 27 e8 
+0000114             		stmed	r7!,{r0-r3,r14}
+0000114 cf ff ff eb 
+0000118             		bl	here
+0000118 0f 80 b7 e9 
+000011c             		ldmed	r7!,{r0-r3,r15}
+000011c             
+000011c 00 00 00 1f 
+0000120             		swine	0
+0000120 88 00 00 ef 
+0000124             		swi	there
+0000124 fe ff ff bf 
+0000128             		swilt	-2
+0000128             
+0000128             		end

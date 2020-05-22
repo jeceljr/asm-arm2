@@ -1,0 +1,88 @@
+		org 20
+
+		beq	there
+		bne	there
+		bcs	there
+		bcc	there
+		bmi	there
+		bpl	there
+		bvs	there
+		bvc	there
+		bhi	there
+		bls	there
+		bge	there
+		blt	there
+		bgt	there
+		ble	there
+		bal	there
+		bnv	there
+		b	there
+here:		bal	here
+		cmp	r1,#0
+		beq	there
+
+		bl	here+8
+		adds	r1,r2,#1
+		adds	r1,r2,#777
+		adds	r1,r2,#4096
+		adds	r1,r2,#4097
+		adds	r1,r2,#0f0000h
+		adds	r1,r2,#0c0000001h
+		blcc	there
+
+		blnv	there
+
+there:		addeq	r2,r4,r5
+		teqs	r4,#3
+
+		sub	r4,r5,r7,lsr r2
+		sub	r4,r5,r7,asl r2
+		sub	r4,r5,r7,lsl r2
+		sub	r4,r5,r7,ror r2
+		sub	r4,r5,r7,asr r2
+		sub	r4,r5,r7,rrx
+		sub	r4,r5,r7,lsr #9
+
+		sub	r4,r5,r7,rrx #9
+		sub	r4,r5,r7 lsr #9
+		sub	r4,r5,r7,rsr #9
+		sub	r4,r5,r7,lsr #45
+
+		teqp	r15,#0
+
+		movnv	r0,r0
+		mov	r15,14
+
+		movs	r15,r14
+
+		mul	r1,r2,r3
+		mlaeqs	r1,r2,r3,r4
+
+		str	r1,[r2,r3]!
+		str	r1,[r2],r3
+		strb	r1,[r2],r3
+		str	r1,[r2,#3]!
+		str	r1,[r2],#3
+		str	r1,[r2,#-3]
+		strt	r1,[r2],#-3
+		strt	r1,[r2,r3]
+		str	r1,[r2],r3!
+
+		ldr	r1,[r2,#16]
+		ldr	r1,[r2,r3,lsl #2]
+
+		ldreqb	r1,[base,#5]
+		str	r1,place
+place:
+		ldmfd	r7!,{r0,r1,r2}
+		stmia	r2,{r0-r15}
+
+		stmed	r7!,{r0-r3,r14}
+		bl	here
+		ldmed	r7!,{r0-r3,r15}
+
+		swine	0
+		swi	there
+		swilt	-2
+
+		end
